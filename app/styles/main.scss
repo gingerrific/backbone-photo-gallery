@@ -1,0 +1,100 @@
+// bower:scss
+// endbower
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    height: 600px;
+    width: 100%;
+    margin: 25px auto;
+}
+
+.thumbnail-gallery {
+    width: 65%;
+    min-height: 600px;
+    display: inline-block;
+    border: 1px solid black;
+
+    & .thumb {
+        margin: 10px;
+        float: left;
+        cursor: pointer;
+        padding: 3px;
+        border: 1px solid black;
+        
+        & img {
+            height: 100px;
+            width: 200px;
+        }
+
+    }
+}
+
+.details {
+    width: 34%;
+    min-height: 450px;
+    display: inline-block;
+    border: 1px solid black;
+    vertical-align: top;
+    font-size: 12px;
+
+    & .zoomed-thumbnail {
+        height: 204px;
+        width: 404px;
+        border: 1px solid black;
+        margin: 40px auto;
+        padding: 2px;
+        text-align: center;
+        line-height: 200px;
+
+        & img {
+            height: 200px;
+            width: 400px;
+            
+        }
+    }
+    .editor {
+        margin: 0 5px 10px;
+        text-align: right;
+
+        & .link-address {
+            width: 100%;
+            min-height: 23px;
+            line-height: 23px;
+
+            & input {
+                margin-right: 15px;
+                width: 85%;
+                float: right;
+            }
+        }
+
+        & .caption-quote {
+            width: 100%;
+            min-height: 23px;
+            line-height: 23px;
+
+            & input {
+                margin-right: 15px;
+                width: 85%;
+                float: right;
+            }
+        }
+    }
+
+    & .save-button, & .preview-button {
+        margin-top: 80px;
+        margin-left: 10px;
+        float: right;
+    }
+}
