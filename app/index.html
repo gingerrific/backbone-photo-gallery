@@ -25,7 +25,6 @@
             <div class="details">
 
             </div>
-
             <div class="thumbnail-gallery"></div>
         </div>
 
@@ -37,6 +36,7 @@
         </script>
 
         <script type="text/template" class='detail-view-template'>
+            <div class="status"></div>
             <div class="zoomed-thumbnail">
                 <%=url ? '<img src='+url+'>': 'Add a new image'%>
             </div>
@@ -47,12 +47,13 @@
                 <div class="caption-quote">Caption:&nbsp  
                     <input type="text" value="<%=caption ? caption : 'Add a new caption'%>">
                 </div>
-                <%=url ? '<button class="save-button">Save</button><button class="preview-button">Preview</button><button class="delete-button">Delete</button><button class="new-button">New</button>' : '<button class="new-button">New</button>' %>                
-                
+                <%=url ?
+                 '<button class="save-button">Save</button><button class="preview-button">Preview</button><button class="delete-button">Delete</button><button class="new-button">New</button>' : '<button class="new-button">New</button>' %>                
             </div>
         </script>
 
         <script type="text/template" class='detail-view-editing-template'>
+            <div class="status"></div>
             <div class="zoomed-thumbnail">
                 <%=url ? '<img src='+url+'>': 'Add a new image'%>
             </div>
@@ -68,6 +69,22 @@
             <button class="preview-button">Preview</button>
             <button class="delete-button">Delete</button>
             </div>
+        </script>
+
+        <script type="text/javascript">
+            var PhotoGallery = {
+                // constructors
+                Models: {},
+                Collections: {},
+                Views: {},
+                Routers: {},
+
+                // instances
+                models: {},
+                collections: {},
+                views: {},
+                routers: {},
+            }
         </script>
 
         <!-- build:js scripts/vendor.js -->

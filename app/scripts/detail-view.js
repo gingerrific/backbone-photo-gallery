@@ -1,6 +1,6 @@
 "use strict";
 
-var DetailView = Backbone.View.extend({
+PhotoGallery.Views.DetailView = Backbone.View.extend({
 	template: _.template($('.detail-view-template').text()),
 	editingTemplate: _.template($('.detail-view-editing-template').text()),
 
@@ -12,11 +12,8 @@ var DetailView = Backbone.View.extend({
 	},
 
 	initialize: function () {
-		this.photoGallery = new PhotoCollection();
+		
 		this.listenTo(this.model, 'change', this.render);
-		this.listenTo(this.photoGallery, 'add', function (picture) {
-			new ThumbnailView({model:picture});
-		});
 
 		$('.details').html('');
 		$('.details').append(this.el);
@@ -24,7 +21,6 @@ var DetailView = Backbone.View.extend({
 	},
 
 	render: function () {
-		console.log('rendered');
 		var renderedTemplate = this.template(this.model.attributes);
 		this.$el.html(renderedTemplate);
 	},
@@ -37,22 +33,28 @@ var DetailView = Backbone.View.extend({
 	saveChanges: function() {
 		var link = $('.link-address input').val();
 		var captionText = $('.caption-quote input').val();
+		var that = this;
 
 		if (link && captionText) {
 			this.model.set({
-				url: link, 
+				url: link,
 				caption: captionText
 			});
-			this.photoGallery.add(this.model);
-			this.model.save();
-		} 
+			PhotoGallery.collections.photoGallery.add(this.model);
+
+			this.model.save()
+		}
+		else {
+			alert('A URL and caption are required.')
+		}
 	},
 
 	newPicture: function () {
 		var renderedTemplate = this.editingTemplate(this.model.attributes);
 		this.$el.html(renderedTemplate);
 
-		this.model = new Photo();
+
+		this.model = new PhotoGallery.Models.Photo();
 
 		this.$el.find('input').val('');
 		this.$el.find('.zoomed-thumbnail').html('<img src=http://allaboutuarts.ca/wp-content/uploads/2012/07/placeholder.jpg>');
@@ -61,6 +63,7 @@ var DetailView = Backbone.View.extend({
 
 	deletePicture: function () {
 		this.model.destroy();
+		this.newPicture();
 	}
 });
 
@@ -72,21 +75,15 @@ var DetailView = Backbone.View.extend({
 
 
 
-var AppView = Backbone.View.extend({
+PhotoGallery.Views.AppView = Backbone.View.extend({
 
 	initialize: function () {
-		this.photoGallery = new PhotoCollection();
-		this.photoGallery.fetch();
-		this.listenTo(this.photoGallery, 'add', function (picture) {
-			new ThumbnailView({model:picture});
+		PhotoGallery.collections.photoGallery = new PhotoGallery.Collections.PhotoCollection();
+		PhotoGallery.collections.photoGallery.fetch();
+		this.listenTo(PhotoGallery.collections.photoGallery, 'add', function (picture) {
+			PhotoGallery.views.thumbnail = new PhotoGallery.Views.ThumbnailView({model:picture});
+			PhotoGallery.views.details = new PhotoGallery.Views.DetailView({model: picture});
 		});
-
-
-		this.listenTo(this.photoGallery, 'remove', function (picture) {
-			// 
-		});
-
-		new DetailView({model: this.model})
 	}
 })
 

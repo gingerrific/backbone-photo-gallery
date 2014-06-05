@@ -51,11 +51,19 @@ body {
     vertical-align: top;
     font-size: 12px;
 
+    & .status {
+        margin: 10px auto 0;
+        width: 100px;
+        min-height: 24px;
+        font-size: 18px;
+        text-align: center;
+    }
+
     & .zoomed-thumbnail {
         height: 300px;
         width: 400px;
         border: 1px solid black;
-        margin: 40px auto;
+        margin: 30px auto 40px;
         padding: 2px;
         text-align: center;
         line-height: 300px;

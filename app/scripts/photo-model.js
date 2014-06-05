@@ -1,10 +1,10 @@
 "use strict";
 
-var Photo = Backbone.Model.extend({
+PhotoGallery.Models.Photo = Backbone.Model.extend({
 	idAttribute: '_id',
 });
 
-var PhotoCollection = Backbone.Collection.extend({
-	model: Photo,
+PhotoGallery.Collections.PhotoCollection = Backbone.Collection.extend({
+	model: PhotoGallery.Models.Photo,
 	url: 'http://tiny-pizza-server.herokuapp.com/collections/jdphotos'
 });

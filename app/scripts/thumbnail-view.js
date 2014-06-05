@@ -1,7 +1,7 @@
 "use strict";
 
 
-var ThumbnailView = Backbone.View.extend({
+PhotoGallery.Views.ThumbnailView = Backbone.View.extend({
 	template: _.template($('.thumbnail-view-template').text()),
 
 	className: 'thumb',
@@ -13,6 +13,7 @@ var ThumbnailView = Backbone.View.extend({
 	initialize: function () {
 		this.listenTo(this.model, 'change', this.render);
 		$('.thumbnail-gallery').append(this.el);
+		this.listenTo(this.model, 'destroy', this.remove)
 		this.render();
 	},
 
@@ -22,6 +23,6 @@ var ThumbnailView = Backbone.View.extend({
 	},
 
 	showDetailView: function () {
-		new DetailView({model: this.model});
+		PhotoGallery.views.details = new PhotoGallery.Views.DetailView({model: this.model});
 	}
 });

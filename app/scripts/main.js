@@ -1,2 +1,2 @@
-var blankPhoto = new Photo({url: '', caption: ''});
-new AppView({model: blankPhoto});
+PhotoGallery.models.blankPhoto = new PhotoGallery.Models.Photo({url: '', caption: ''});
+PhotoGallery.views.appView = new PhotoGallery.Views.AppView({model: PhotoGallery.models.blankPhoto});
