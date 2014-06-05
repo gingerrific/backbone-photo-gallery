@@ -33,10 +33,26 @@
 
 
         <script type="text/template" class='thumbnail-view-template'>
-            <img src="<%=url%>">
+            <img src="<%=url %>" title="<%=caption %>">
         </script>
 
         <script type="text/template" class='detail-view-template'>
+            <div class="zoomed-thumbnail">
+                <%=url ? '<img src='+url+'>': 'Add a new image'%>
+            </div>
+            <div class="editor">
+                <div class="link-address">URL:&nbsp  
+                    <input type="text" value="<%=url ? url : 'Add a new image URL' %>">
+                </div>
+                <div class="caption-quote">Caption:&nbsp  
+                    <input type="text" value="<%=caption ? caption : 'Add a new caption'%>">
+                </div>
+                <%=url ? '<button class="save-button">Save</button><button class="preview-button">Preview</button><button class="delete-button">Delete</button><button class="new-button">New</button>' : '<button class="new-button">New</button>' %>                
+                
+            </div>
+        </script>
+
+        <script type="text/template" class='detail-view-editing-template'>
             <div class="zoomed-thumbnail">
                 <%=url ? '<img src='+url+'>': 'Add a new image'%>
             </div>
@@ -50,23 +66,7 @@
 
             <button class="save-button">Save</button>
             <button class="preview-button">Preview</button>
-            </div>
-        </script>
-
-        <script type="text/template" class='detail-view-editing-template'>
-            <div class="zoomed-thumbnail">
-                <%=url ? '<img src="url">': 'Add a new image'%>
-            </div>
-            <div class="editor">
-                <div class="link-address">URL: 
-                <%=url ? url : 'Add a new image URL' %>
-                    <button class="edit-url-button">Edit</button>
-                </div>
-                <div class="caption-quote">Caption: 
-                <%=caption ? caption : 'Add a new caption'%>
-                    <button class="edit-caption-button">Edit</button>
-                </div>
-            <button class="save-button">Save</button>
+            <button class="delete-button">Delete</button>
             </div>
         </script>
 

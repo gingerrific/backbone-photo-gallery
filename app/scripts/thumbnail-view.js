@@ -22,6 +22,6 @@ var ThumbnailView = Backbone.View.extend({
 	},
 
 	showDetailView: function () {
-		var detailed = new DetailView({model: this.model});
+		new DetailView({model: this.model});
 	}
 });
