@@ -6,23 +6,25 @@ PhotoGallery.Views.ThumbnailView = Backbone.View.extend({
 
 	className: 'thumb',
 
-	events: {
-		'click'	: 'showDetailView'
-	},
-
 	initialize: function () {
 		this.listenTo(this.model, 'change', this.render);
+		this.listenTo(this.model, 'destroy', this.remove);
 		$('.thumbnail-gallery').append(this.el);
-		this.listenTo(this.model, 'destroy', this.remove)
 		this.render();
 	},
 
 	render: function () {
-		var renderedTemplate = this.template(this.model.attributes);
-		this.$el.html(renderedTemplate);
+		if (this.model.isNew()) {
+			console.log('waiting on an id')
+			this.model.save();
+		}
+		else {
+			var renderedTemplate = this.template(this.model.attributes);
+			this.$el.html(renderedTemplate);
+		}
 	},
 
 	showDetailView: function () {
-		PhotoGallery.views.details = new PhotoGallery.Views.DetailView({model: this.model});
+		PhotoGallery.views.details.remove();
 	}
 });

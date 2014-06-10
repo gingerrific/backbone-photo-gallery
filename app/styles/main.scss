@@ -15,12 +15,13 @@ body {
 
 .container {
     height: 600px;
-    width: 100%;
+    width: 95%;
     margin: 25px auto;
 }
 
 .thumbnail-gallery {
-    width: 66%;
+    min-width: 42em;
+    max-width: 68%;
     min-height: 600px;
     overflow: scroll;
     display: inline-block;
@@ -44,12 +45,19 @@ body {
 }
 
 .details {
-    width: 33%;
+    width: 31%;
+    min-width: 27em;
     min-height: 450px;
     display: inline-block;
     border: 1px solid black;
     vertical-align: top;
     font-size: 12px;
+    position: relative;
+
+    & .detail-container {
+        width: 93%;
+        margin: 30px auto 10px;
+    }
 
     & .status {
         margin: 10px auto 0;
@@ -60,13 +68,13 @@ body {
     }
 
     & .zoomed-thumbnail {
-        height: 300px;
-        width: 400px;
+        height: 20em;
+        width: 100%;
         border: 1px solid black;
-        margin: 30px auto 40px;
         padding: 2px;
         text-align: center;
         line-height: 300px;
+        margin-bottom: .5em;
 
         & img {
             height: 100%;
@@ -76,17 +84,15 @@ body {
     }
     .editor {
         margin: 0 5px 10px;
-        text-align: right;
 
         & .link-address {
             width: 100%;
             min-height: 23px;
             line-height: 23px;
+            margin: 0 auto;
 
             & input {
-                margin-right: 60px;
-                width: 67%;
-                float: right;
+                width: 90%;
             }
         }
 
@@ -94,20 +100,11 @@ body {
             width: 100%;
             min-height: 23px;
             line-height: 23px;
+            margin-bottom: 2em;
 
             & input {
-                margin-right: 60px;
-                width: 67%;
-                float: right;
+                width: 84.5%;
             }
         }
-    }
-
-    & .save-button, & .preview-button, 
-    & .delete-button, & .new-button {
-        margin-top: 50px;
-        margin-left: 10px;
-        margin-bottom: 10px;
-        float: right;
     }
 }

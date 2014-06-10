@@ -3,6 +3,7 @@
 PhotoGallery.Views.DetailView = Backbone.View.extend({
 	template: _.template($('.detail-view-template').text()),
 	editingTemplate: _.template($('.detail-view-editing-template').text()),
+	className: 'detail-container',
 
 	events: {
 		'click .preview-button'			: 'previewChanges',
@@ -12,7 +13,6 @@ PhotoGallery.Views.DetailView = Backbone.View.extend({
 	},
 
 	initialize: function () {
-		
 		this.listenTo(this.model, 'change', this.render);
 
 		$('.details').html('');
@@ -40,10 +40,10 @@ PhotoGallery.Views.DetailView = Backbone.View.extend({
 				url: link,
 				caption: captionText
 			});
-			PhotoGallery.collections.photoGallery.add(this.model);
 
-			this.model.save()
+			PhotoGallery.collections.photoGallery.add(this.model);
 		}
+		
 		else {
 			alert('A URL and caption are required.')
 		}
@@ -55,7 +55,6 @@ PhotoGallery.Views.DetailView = Backbone.View.extend({
 
 
 		this.model = new PhotoGallery.Models.Photo();
-
 		this.$el.find('input').val('');
 		this.$el.find('.zoomed-thumbnail').html('<img src=http://allaboutuarts.ca/wp-content/uploads/2012/07/placeholder.jpg>');
 
@@ -63,27 +62,10 @@ PhotoGallery.Views.DetailView = Backbone.View.extend({
 
 	deletePicture: function () {
 		this.model.destroy();
-		this.newPicture();
 	}
 });
 
 
 
 
-
-
-
-
-
-PhotoGallery.Views.AppView = Backbone.View.extend({
-
-	initialize: function () {
-		PhotoGallery.collections.photoGallery = new PhotoGallery.Collections.PhotoCollection();
-		PhotoGallery.collections.photoGallery.fetch();
-		this.listenTo(PhotoGallery.collections.photoGallery, 'add', function (picture) {
-			PhotoGallery.views.thumbnail = new PhotoGallery.Views.ThumbnailView({model:picture});
-			PhotoGallery.views.details = new PhotoGallery.Views.DetailView({model: picture});
-		});
-	}
-})
 

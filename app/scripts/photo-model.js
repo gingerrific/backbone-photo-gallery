@@ -2,6 +2,10 @@
 
 PhotoGallery.Models.Photo = Backbone.Model.extend({
 	idAttribute: '_id',
+	defaults: {
+		url: '',
+		caption: '',
+	}
 });
 
 PhotoGallery.Collections.PhotoCollection = Backbone.Collection.extend({
